@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import firebase from "firebase/app"
 
-import { Container, Grid,Row,Col, Panel, Button, Icon, Alert } from 'rsuite'
+import { Panel, Button, Icon, Alert } from 'rsuite'
 import { auth, database } from '../misc/firebase'
 
+import "../Styles/signIn.css"
+import { ProfileContext } from '../Context/ProfileContext'
+
+
 const SignIn = () => {
+
+
+  const {setProfile} = useContext(ProfileContext);
 
   const signInWithProvider = async(provider)=>{
 
@@ -16,18 +23,18 @@ const SignIn = () => {
 
      if(additionalUserInfo.isNewUser){
            
-     await database.ref(`/profiles/${user.uid}`).set({
+     await database.ref(`/profiles/${user.uid}`).set({  //firebase won't allow us to wirte 
+
+      //in locked mode  so we have changes the security rules 
 
         name: user.displayName,
         createdAt : firebase.database.ServerValue.TIMESTAMP //user created at 
       })
-     }
-     else
-     {
 
      }
 
       Alert.success('SignIn Successfull',2000)
+      setProfile({name:user.displayName,createdAt:firebase.database.ServerValue.TIMESTAMP,uid:user.uid , email:user.email});
     } catch (err) {
       
        Alert.error(err.message,2000)
@@ -58,14 +65,14 @@ const SignIn = () => {
 
 
   return (
-    <div class="container mt-5">
+    <div class="container">
        
    {/* it has 24 columns systems */}
       <div class="row">
          <div class= "col col-md-6 col-xs-12 offset-md-3" > 
    {/* 24 columns in smaller and md and above 12 columns  */}
 
-         <Panel shaded>
+         <Panel shaded className="panel">
            <div className="text-center">
              <h2>Welcome To ChitChat</h2>
              <p>IntroVerts ChitChat Here</p>
