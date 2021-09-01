@@ -19,16 +19,19 @@ function App() {
 
   const [profile,setProfile] = useState(null);
   const [isLoading,setIsloading] = useState(true);
+let useref
    useEffect(()=>{
        auth.onAuthStateChanged(authObj => {
           console.log("king is here");
           if(authObj)
           {
             
-            database.ref(`/profiles/${authObj.uid}`).on('value',snap =>{
+           useref =  database.ref(`/profiles/${authObj.uid}`)
+          
+           useref.on('value',snap =>{
               const {name,createdAt} = snap.val();
 
-
+             console.log("tees markan tees markhan ");
               const data = {
                 name,
                 createdAt,
@@ -44,6 +47,9 @@ function App() {
           }
           else
           {
+            if(useref)
+             useref.off();
+             
                setProfile(null)
                setIsloading(false);
           }
