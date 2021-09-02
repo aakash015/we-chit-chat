@@ -1,4 +1,4 @@
-import { useState ,useCallback} from "react";
+import { useState ,useCallback,useEffect} from "react";
 
 export function useModalState(defaultValue = false)
 {
@@ -10,3 +10,7 @@ export function useModalState(defaultValue = false)
 
   return {isOpen,open,close}
 }
+
+// usage
+// const is992px = useMediaQuery('(max-width: 992px)')
+
