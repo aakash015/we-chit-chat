@@ -6,14 +6,14 @@ import { ProfileContext } from '../Context/ProfileContext';
 const PrivateRoute = ({children,path,isLoading}) => {
 
   const {profile} = useContext(ProfileContext);
-
+console.log("private route called")
 
    if(isLoading && !profile)
    {
        return (
           <div className="container">
             
-              <Loader  center vertical size="md" content="loading" speed="slow" />
+              <Loader className="loader" center vertical size="md" content="loading" speed="slow" />
             
           </div>
        )

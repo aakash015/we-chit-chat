@@ -12,7 +12,7 @@ const PublicRoute = ({children,path,isLoading}) => {
    return  (
     <div className="container">
             
-     <Loader  center vertical size="md" content="loading" speed="slow" />
+     <Loader center vertical size="lg"  content="loading" speed="fast" />
    
    </div>
 

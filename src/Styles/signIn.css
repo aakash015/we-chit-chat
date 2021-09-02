@@ -2,6 +2,7 @@
   background-image: url('../images/panel.jpg');
   margin-top: 30% ;
   height:250px;
+  border: 2px solid grey;
 }
 
 body{
