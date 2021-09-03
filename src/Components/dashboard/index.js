@@ -1,14 +1,25 @@
 import React, { useContext } from 'react'
-import { Button, Divider, Drawer, Icon } from 'rsuite'
+import { Button, Divider, Drawer, Icon,Alert } from 'rsuite'
 import {ProfileContext} from '../../Context/ProfileContext'
+import { database } from '../../misc/firebase'
 import EditableInput from './EditableInput'
 const  DashBoard = ({onSignOut}) => {
 
-
+console.log("rendered index")
   const {profile} = useContext(ProfileContext)
  
-  const onSave = (newData)=>{
+  const onSave =  async (newData)=>{
      console.log(newData);
+    const userNameRef =  database.ref(`/profiles/${profile.uid}`).child('name')
+
+    try{
+         await userNameRef.set(newData);
+
+         Alert.success("Updated Successfully",4000);
+
+    }catch(err){
+         Alert.error(err.message,4000);
+    }
   }
 
   return (

@@ -17,7 +17,7 @@ const EditableInput = ({initialValue,onSave,label=null,placeholder="write your v
   }
 
 
-  const onSaveClick = ()=>{
+  const onSaveClick = async ()=>{
      const trimmed = input.trim();
 
      if(trimmed === '')
@@ -27,7 +27,7 @@ const EditableInput = ({initialValue,onSave,label=null,placeholder="write your v
 
      if(trimmed!==initialValue)
      {
-        onSave(trimmed)
+        await onSave(trimmed)
      }
      setIsEditable(false);
   }
