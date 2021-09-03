@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Divider, Drawer, Icon,Alert } from 'rsuite'
 import {ProfileContext} from '../../Context/ProfileContext'
 import { database } from '../../misc/firebase'
+import AvatarUploadBtn from './AvatarUploadBtn'
 import EditableInput from './EditableInput'
 import ProviderBlock from './ProviderBlock'
 const  DashBoard = ({onSignOut}) => {
@@ -41,6 +42,7 @@ console.log("rendered index")
        onSave = {onSave}
        label = {<h6 className="mb-2">NickName</h6>}
      />
+     <AvatarUploadBtn />
      </Drawer.Body>
 
      <Drawer.Footer>
