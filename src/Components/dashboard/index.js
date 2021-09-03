@@ -3,6 +3,7 @@ import { Button, Divider, Drawer, Icon,Alert } from 'rsuite'
 import {ProfileContext} from '../../Context/ProfileContext'
 import { database } from '../../misc/firebase'
 import EditableInput from './EditableInput'
+import ProviderBlock from './ProviderBlock'
 const  DashBoard = ({onSignOut}) => {
 
 console.log("rendered index")
@@ -32,6 +33,7 @@ console.log("rendered index")
 
      <Drawer.Body>
      <h3>Hey! {profile.name}</h3>
+     <ProviderBlock />
      <Divider />
      <EditableInput 
        name = "nickname"
