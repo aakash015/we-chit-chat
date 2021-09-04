@@ -8,3 +8,17 @@
 #avatar-label{
   cursor:pointer;
 }
+
+.avatar-size *{ 
+  /* this * means that everything inside the class avatar-size must have this width height */
+  /*this overwrites the avatar default css provided by rsuite */
+  /*i have looked this from console tyles */ 
+  width: auto !important;
+   height: auto !important;
+ 
+}
+
+.avatar-size{
+  background-color: black;
+  font-size: 50px;
+}

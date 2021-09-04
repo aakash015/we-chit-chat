@@ -5,6 +5,7 @@ import { useModalState } from '../../misc/custom-hooks'
 import '../../Styles/Drawer.css' //pointer hand css of label
 import { ProfileContext } from '../../Context/ProfileContext'
 import { database, storage } from '../../misc/firebase'
+import ProfileAvatar from './ProfileAvatar'
 
 
 const AvatarUploadBtn = () => {
@@ -90,8 +91,13 @@ const AvatarUploadBtn = () => {
     } 
   }
   return (
-    <div className="mt-3 text-center">
+    <div className="mt-2 text-center">
        
+       <ProfileAvatar //our component 
+         src = {profile.avatar} 
+         name = {profile.name}
+         style = {{width:'150px', height:'150px'}}
+       />
        <div>
 
          <label htmlFor="avatar-upload" id="avatar-label" className="d-block p-3">

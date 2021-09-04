@@ -31,12 +31,13 @@ let useref
            useref =  database.ref(`/profiles/${authObj.uid}`)
           
            useref.on('value',snap =>{
-              const {name,createdAt} = snap.val();
+              const {name,createdAt,avatar} = snap.val();
 
              console.log("tees markan tees markhan ");
               const data = {
                 name,
                 createdAt,
+                avatar,
                 uid : authObj.uid,
                 email : authObj.email
               }
