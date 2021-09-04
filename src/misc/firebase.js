@@ -2,7 +2,7 @@
 import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"
-
+import "firebase/storage"
 const firebaseConfig = {
   apiKey: "AIzaSyB5D6YQPE7Po5rVEiE7r4GirI2m-EaKcvg",
   authDomain: "we-chit-chat.firebaseapp.com",
@@ -19,3 +19,4 @@ const app = firebase.initializeApp(firebaseConfig) ;
 
 export const auth = app.auth();
 export const database = app.database();
+export const storage =app.storage();
