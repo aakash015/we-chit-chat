@@ -14,8 +14,8 @@
   /*this overwrites the avatar default css provided by rsuite */
   /*i have looked this from console tyles */ 
   width: auto !important;
-   height: auto !important;
- 
+  height: auto !important;
+  
 }
 
 .avatar-size{

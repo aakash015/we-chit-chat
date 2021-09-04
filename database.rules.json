@@ -7,6 +7,10 @@
         ".write" : "$user_id==auth.uid"
       } 
     },
+     "rooms":{
+       ".read" : true,
+       ".write" : true
+     }, 
     ".read": false,
     ".write": false
   }
