@@ -16,7 +16,7 @@ const INITIAL_FORM = {
 }
 const CreateRoomBtnModal = () => {
 
-  const {isOpen,open,close} = useModalState();
+  const {isOpen,open,close} = useModalState(); //our custom hook 
   const [formValue,setFormValue] = useState(INITIAL_FORM);
   const [isLoading,setIsLoading] = useState(false);
   
@@ -69,7 +69,7 @@ const CreateRoomBtnModal = () => {
     </Modal.Header>
     <Modal.Body>
 
-      <Form fluid onChange = {onFormChange} ref={formRef} formValue={formValue} model={model}>
+      <Form fluid onChange = {onFormChange} ref={formRef}  model={model}>
         <FormGroup>
           <ControlLabel>Room Name</ControlLabel>
           <FormControl name="name" placeholder="Enter chat room name..." />

@@ -1,6 +1,9 @@
 import React from 'react'
+import "../Styles/ChatRoomList.css"
 import DashBoardToggle from './dashboard/DashboardToggle'
 import CreateRoomBtnModal from './dashboard/CreateRoomBtnModal'
+import { Divider } from 'rsuite'
+import ChatRoomList from './rooms/ChatRoomList'
 const Sidebar = () => {
   return (
     <div className = "h-100 pt-2">
@@ -8,9 +11,11 @@ const Sidebar = () => {
        <div>
          <DashBoardToggle />  
          <CreateRoomBtnModal></CreateRoomBtnModal>
+         <Divider><span class="divider-style">Join Conversation</span></Divider>
        </div>  
        
-       bottom 
+       <ChatRoomList />
+       
     </div>
   )
 }
