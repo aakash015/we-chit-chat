@@ -10,6 +10,7 @@ console.log("private route called")
 
    if(isLoading && !profile)
    {
+     
        return (
           <div className="container">
             
@@ -18,14 +19,16 @@ console.log("private route called")
           </div>
        )
    }
-  else
+
   if(!profile && !isLoading)
-  {
+  { 
+   
     return <Redirect to="/signin" /> 
   }
  
   return (
-    <Route path={path}>
+    <Route  path={path}>
+      {console.log("path "+path)}
       {children}
     </Route>
   )

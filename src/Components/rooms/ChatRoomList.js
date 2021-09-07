@@ -12,7 +12,6 @@ const ChatRoomList = () => {
     <Nav
      appearance="subtle"
      vertical
-     
      className="custom-scroll"
      activeKey = {location.pathname}
     >

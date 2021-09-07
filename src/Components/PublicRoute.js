@@ -7,8 +7,11 @@ const PublicRoute = ({children,path,isLoading}) => {
 
   const {profile} = useContext(ProfileContext);
   
+  console.log("public route called");
+
  if(isLoading && !profile )
  {
+   console.log("loader returned")
    return  (
     <div className="container">
             
@@ -16,16 +19,18 @@ const PublicRoute = ({children,path,isLoading}) => {
    
    </div>
 
-   )  
+   )
+
  } 
 
   if(profile && !isLoading)
   {
+    console.log("home returned")
     return <Redirect to="/" /> 
   }
  
   return (
-    <Route path={path}>
+    <Route exact path={path}>
       {children}
     </Route>
   )

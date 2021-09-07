@@ -11,7 +11,7 @@ const Sidebar = () => {
        <div>
          <DashBoardToggle />  
          <CreateRoomBtnModal></CreateRoomBtnModal>
-         <Divider><span class="divider-style">Join Conversation</span></Divider>
+         <Divider><span className="divider-style">Join Conversation</span></Divider>
        </div>  
        
        <ChatRoomList />

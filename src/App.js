@@ -4,7 +4,7 @@ import 'rsuite/dist/styles/rsuite-default.css';
 
 
 
-import { Route, Switch } from 'react-router';
+import {Switch } from 'react-router';
 import SignIn from './Pages/SignIn';
 import PrivateRoute from './Components/PrivateRoute';
 import Home from './Pages/Home';
@@ -12,6 +12,7 @@ import { BrowserRouter } from 'react-router-dom';
 import PublicRoute from './Components/PublicRoute';
 import { ProfileContext } from './Context/ProfileContext';
 import { auth, database } from './misc/firebase';
+
 
 
 
@@ -67,15 +68,19 @@ let useref
   <BrowserRouter>
   <ProfileContext.Provider value={{profile,setProfile}}>  
    <Switch>
-     <PublicRoute  path='/signin' isLoading={isLoading}>
+     
+
+  
+   
+    <PublicRoute  path='/signin' isLoading={isLoading}>
         <SignIn />
      </PublicRoute>
 
-    <PrivateRoute path='/' isLoading = {isLoading}> 
+     <PrivateRoute  path='/' isLoading = {isLoading}> 
     {/* private route is created by us  */}
       <Home />
     </PrivateRoute>
-
+   
    </Switch>
    </ProfileContext.Provider>
    </BrowserRouter>

@@ -6,13 +6,13 @@ import { Panel, Button, Icon, Alert } from 'rsuite'
 import { auth, database } from '../misc/firebase'
 
 import "../Styles/signIn.css"
-import { ProfileContext } from '../Context/ProfileContext'
+
 
 
 const SignIn = () => {
 
 
-  const {setProfile} = useContext(ProfileContext);
+ 
 
   const signInWithProvider = async(provider)=>{
 
@@ -34,7 +34,7 @@ const SignIn = () => {
      }
 
       Alert.success('SignIn Successfull',2000)
-      setProfile({name:user.displayName,createdAt:firebase.database.ServerValue.TIMESTAMP,uid:user.uid , email:user.email});
+     
     } catch (err) {
       
        Alert.error(err.message,2000)
