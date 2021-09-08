@@ -8,6 +8,7 @@ import { useMediaQuery } from '../misc/custom-hooks'
 
 const Home = () => {
 
+  
   const path = useLocation().pathname;
   
   const isDesktop = useMediaQuery(`(min-width:992px)`)
@@ -40,9 +41,12 @@ const Home = () => {
          <Route>
           
            {isDesktop&&
-            <div className="col col-12 col-lg-8 h-100">
-                 <h3 className="text-center text-white">Please Select Chat</h3>
-            </div>
+           
+              <div className="col col-12 col-lg-8 h-100">
+                   <h3 className="text-center text-white mt-5">Please Select Chat</h3>
+              </div>
+         
+
            }
          </Route>
 
