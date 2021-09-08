@@ -17,6 +17,14 @@ const Chat = () => {
    
   const rooms = useContext(RoomsContext);
  
+  //useContext krne mein problem ye h ki ab jaise rooms mein kuchh bhi change hoga 
+  //chahe wo iss component se  related ho na ho tab bhi ye component re-render hoga 
+  //jaise topMain mein sirf name display kra rhe h to maanlo wahan useContext krte na 
+  //to agar room ka description bhi change hota to bhi wo poora rerender hota
+  //isliye wo naya package install kiya h useContextSelector
+  //aur agar memo ka use nhi krenge to wo kaam nhi krega isliye memo ka bhi use kiya h 
+  //yahan pe useContext ka use h to jab bhi kuchh change hoga room context mein ye wala re-render
+  //hoga par top message aur bottom render nhi honge kyunki wo memoized h 
 
   if(!rooms)
   {
