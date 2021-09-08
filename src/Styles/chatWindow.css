@@ -1,0 +1,28 @@
+
+.chat-top,
+.chat-middle,
+.chat-bottom {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-top,
+
+.chat-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.chat-top {
+  height: 75px;
+}
+
+.chat-bottom {
+  height: 65px;
+}
+
+.chat-middle {
+  height: calc(100% - 75px - 65px);
+}
