@@ -1,8 +1,13 @@
 import React,{memo} from 'react'
+import {ButtonToolbar, Icon} from 'rsuite'
+import {Link} from 'react-router-dom'
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext'
+import { useMediaQuery } from '../../../misc/custom-hooks'
+import RoomInfoBtnModal from './RoomInfoBtnModal'
 
 const TopMain = () => {
 
+  const isMobile = useMediaQuery(`(max-width:992px)`)
   console.log("TopMain rendered")
   const name = useCurrentRoom(v => v.name) //we can't pass objects values should be primitive
   
@@ -16,7 +21,28 @@ const TopMain = () => {
 
   return (
     <div>
-      {name}
+      <div className = "d-flex justify-content-between align-items-center">
+      
+      <h4>
+
+      <Icon 
+      componentClass={Link} 
+      to="/" 
+      icon="arrow-circle-left" 
+      size="2x" 
+      className ={isMobile?'d-inline-block p-0 mr-2 text-blue link-unstyled':'d-none'} 
+      />
+
+      <span className="text-white">{name}</span>
+      </h4>
+
+      <ButtonToolbar className="">todo</ButtonToolbar>
+      </div>
+
+      <div className="d-flex justify-content-between align-items-center">
+        <span>todo</span>
+        <RoomInfoBtnModal />
+      </div>
     </div>
     
   )

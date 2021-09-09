@@ -26,3 +26,11 @@
 .chat-middle {
   height: calc(100% - 75px - 65px);
 }
+
+.link-unstyled, .link-unstyled:visited, .link-unstyled:hover, .link-unstyled:active, .link-unstyled:focus, .link-unstyled:active:hover {
+  text-decoration: none;
+}
+
+.text-blue{
+  color: white;
+}
