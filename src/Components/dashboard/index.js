@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Divider, Drawer, Icon,Alert } from 'rsuite'
 import {ProfileContext} from '../../Context/ProfileContext'
 import { database } from '../../misc/firebase'
+import { getUserUpdates } from '../../misc/helper'
 import AvatarUploadBtn from './AvatarUploadBtn'
 import EditableInput from './EditableInput'
 import ProviderBlock from './ProviderBlock'
@@ -11,11 +12,14 @@ console.log("rendered index")
   const {profile} = useContext(ProfileContext)
  
   const onSave =  async (newData)=>{
-     console.log(newData);
-    const userNameRef =  database.ref(`/profiles/${profile.uid}`).child('name')
+   
 
     try{
-         await userNameRef.set(newData);
+        //  await userNameRef.set(newData);
+
+         const updates = await getUserUpdates(profile.uid,'name',newData,database);
+
+         await database.ref().update(updates);
 
          Alert.success("Updated Successfully",4000);
 

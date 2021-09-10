@@ -6,6 +6,7 @@ import '../../Styles/Drawer.css' //pointer hand css of label
 import { ProfileContext } from '../../Context/ProfileContext'
 import { database, storage } from '../../misc/firebase'
 import ProfileAvatar from './ProfileAvatar'
+import { getUserUpdates } from '../../misc/helper'
 
 
 const AvatarUploadBtn = () => {
@@ -71,16 +72,22 @@ const AvatarUploadBtn = () => {
     
       const avatarpath = storage.ref(`/profile/${profile.uid}`).child('avatar');
       
-      const uploadAvatarResult = await avatarpath.put(blob,{
-        cacheControl:`public,max-age=${3600*24*3}`
-      });
+
+    
+
+      const uploadAvatarResult = await avatarpath.put(blob);
     
 
       const downloadURL = await uploadAvatarResult.ref.getDownloadURL()
-      console.log("this is my downloadURL",downloadURL);
-      const userAvatarRef = database.ref(`/profiles/${profile.uid}`).child('avatar');
-      userAvatarRef.set(downloadURL);
+    
+
+      const updates = await getUserUpdates(profile.uid,'avatar',downloadURL,database);
+
+      // const userAvatarRef = database.ref(`/profiles/${profile.uid}`).child('avatar');
+      // userAvatarRef.set(downloadURL);
      
+      await database.ref().update(updates);
+
       setIsLoading(false)
       Alert.info('Avatar Uploaded',2000);
 
