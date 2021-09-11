@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
 import { Alert, Button,Drawer,Icon } from 'rsuite'
 import DashBoard from '.';
+import { isOfflineForDatabase, isOnlineForDatabase } from '../../App';
 import {useModalState } from '../../misc/custom-hooks' 
-import {auth} from '../../misc/firebase'
+import {auth, database} from '../../misc/firebase'
 import '../../Styles/Drawer.css'
 const DashboardToggle = () => {
 
@@ -13,11 +14,19 @@ const DashboardToggle = () => {
   
    const onSignOut = useCallback(()=> {
 
+
+    database.ref(`/status/${auth.currentUser.uid}`).set(isOfflineForDatabase).then(()=>{
+
       auth.signOut();
 
       Alert.success('Signed Out',4000)
 
       close();
+    }).catch((error)=>{
+      Alert.error(error.message)
+    });
+
+     
    },[close])
 
   return (
