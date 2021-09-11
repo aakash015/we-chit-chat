@@ -1,0 +1,21 @@
+.msg-list {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-y: auto;
+  list-style-type: none;
+}
+
+.msg-list li:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+
+.word-break-all {
+  word-break: break-all;
+}
+
+.font-bolder {
+  font-weight: 500;
+}

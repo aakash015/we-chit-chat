@@ -8,7 +8,7 @@ import { useMediaQuery } from '../misc/custom-hooks'
 
 const Home = () => {
 
-  
+  console.log("hey buddy")
   const path = useLocation().pathname;
   
   const isDesktop = useMediaQuery(`(min-width:992px)`)
@@ -29,9 +29,8 @@ const Home = () => {
       
 
          <Switch>
-           {/* {console.log("this switch component called")} */}
-       
-         <Route  path="/chats/:chatId">
+         {console.log("my path called ")}
+         <Route exact path="/chats/:chatId">
     
          <div className="col col-12 col-lg-8 h-100">   
            <Chat />
