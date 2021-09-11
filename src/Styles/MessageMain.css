@@ -11,6 +11,9 @@
   padding-bottom: 0 !important;
 }
 
+.styleBlack{
+   background-color: black;
+}
 
 .word-break-all {
   word-break: break-all;
