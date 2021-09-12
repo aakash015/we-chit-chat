@@ -20,7 +20,7 @@ const DashboardToggle = () => {
       auth.signOut();
 
       Alert.success('Signed Out',4000)
-
+   
       close();
     }).catch((error)=>{
       Alert.error(error.message)
@@ -28,6 +28,8 @@ const DashboardToggle = () => {
 
      
    },[close])
+
+  
 
   return (
     <>

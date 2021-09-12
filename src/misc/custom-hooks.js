@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState ,useCallback,useEffect} from "react";
+import { database } from "./firebase";
 
 export function useModalState(defaultValue = false)
 {
@@ -40,3 +42,37 @@ export const useMediaQuery = query => {
 
   return matches;
 };
+
+
+export const  userPresence = (uid) =>{
+  
+
+  const [presence,setPresence] = useState(null);
+
+  console.log("userPresence custom-hooks called here");
+  
+  useEffect(()=>{
+    console.log("userPresence useEffect run here");
+
+    const userStatusRef = database.ref(`/status/${uid}`)
+
+    userStatusRef.on('value',(snap)=>{
+       
+      // console.log("hey snap . val is this ")
+      // console.log(snap.val())
+      // console.log("hey there i am snap val")
+      // console.log(snap.val())
+      if(snap.val())
+      {
+         setPresence(snap.val())
+      }
+      
+
+      return ()=> userStatusRef.off('value')
+    })
+  },[uid])
+
+  console.log("returning presence")
+  console.log(presence)
+  return presence
+}

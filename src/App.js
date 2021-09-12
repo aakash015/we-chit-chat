@@ -62,13 +62,14 @@ function App() {
            
           database.ref('.info/connected').on('value', (snapshot) => {
             
-              if (snapshot.val() === false) {
+              if (!!snapshot.val() === false) {
                   return;
               };
           
             
               userStatusRef.onDisconnect().set(isOfflineForDatabase).then(()=>{
                  
+               
                   userStatusRef.set(isOnlineForDatabase);
               });
 
@@ -83,7 +84,7 @@ function App() {
              //we don't want that unnecessary changes 
              
              database.ref('.info/connected').off();
-             
+
             if(userStatusRef)
               userStatusRef.off() 
                setProfile(null)
