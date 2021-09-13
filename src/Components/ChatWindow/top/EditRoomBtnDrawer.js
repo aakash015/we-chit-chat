@@ -74,13 +74,12 @@ const EditRoomBtnDrawer = () => {
           <EditableInput 
            componentClass = "textarea"
            rows = {5}
-           
+           emptymsg = "Description can't be empty" 
            label={<h6 className="mb-2">Description</h6>}
            initialValue = {description}
            onSave = {onDescriptionSave}
-           emptyMSg = "Description can't be empty"
            wrapperClassName="mt-3"
-           backdrop
+           
            />
         </Drawer.Body>
         <Drawer.Footer>
