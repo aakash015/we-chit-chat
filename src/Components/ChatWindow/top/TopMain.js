@@ -9,7 +9,8 @@ import EditRoomBtnDrawer from './EditRoomBtnDrawer'
 const TopMain = () => {
 
   const isMobile = useMediaQuery(`(max-width:992px)`)
-  console.log("TopMain rendered")
+  
+
   const name = useCurrentRoom(v => v.name) //we can't pass objects values should be primitive
   
   //useCurrentRoom is out customHook defined inside currentRoomContext

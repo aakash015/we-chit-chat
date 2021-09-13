@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { useParams } from 'react-router'
-import { Alert, Button, Drawer } from 'rsuite'
+import { Alert, Button, Drawer, Tooltip, Whisper } from 'rsuite'
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext'
 import { useModalState } from '../../../misc/custom-hooks'
 import { database } from '../../../misc/firebase'
@@ -35,12 +35,23 @@ const EditRoomBtnDrawer = () => {
   const {open,isOpen,close} = useModalState()
   const name = useCurrentRoom( v => v.name)
   const description = useCurrentRoom( v => v.description)
+  const Admin = useCurrentRoom(v => v.isAdmin);
 
+   const attr = {};
+   if(!Admin)
+   
+   attr['disabled'] = 'disabled';
+ 
   return (
     <div>
-      <Button className = "rounded-circle" size="sm" color="red" onClick={open}>
-        A
-      </Button>
+      {/* <Button> */}
+      <Whisper placement="left" trigger="hover" speaker={<Tooltip>
+           You're admin and has right to change name and description of this group
+      </Tooltip>}>
+
+      <Button {...attr}  size="sm" color="red" onClick={open}>{!Admin?'Not Admin':'Admin'}</Button>
+       </Whisper>
+      {/* </Button> */}
 
       <Drawer show={isOpen} onHide = {close} placement="right">
         
