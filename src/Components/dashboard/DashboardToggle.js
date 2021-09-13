@@ -37,10 +37,15 @@ const DashboardToggle = () => {
         <Icon icon = "dashboard" /> Dashboard   
       </Button> 
 
-      <Drawer className="drawer" full={window.innerWidth<=992?true:false} show={isOpen} onHide = {close} placement="left">
-        <DashBoard onSignOut={onSignOut}>
+      <Drawer className="drawer" 
+      full={window.innerWidth<=992?true:false} 
+      show={isOpen} 
+      onHide = {close} 
+      placement="left"
+      backdrop
+      >
+        <DashBoard onSignOut={onSignOut} />
 
-        </DashBoard>
       </Drawer>
     </>
   )

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 import RoomInfoBtnModal from './RoomInfoBtnModal'
+import EditRoomBtnDrawer from './EditRoomBtnDrawer'
 
 const TopMain = () => {
 
@@ -36,7 +37,9 @@ const TopMain = () => {
       <span className="text-white">{name}</span>
       </h4>
 
-      <ButtonToolbar className="">todo</ButtonToolbar>
+      <ButtonToolbar className="">
+        <EditRoomBtnDrawer />
+        </ButtonToolbar>
       </div>
 
       <div className="d-flex justify-content-between align-items-center">

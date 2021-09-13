@@ -1,0 +1,85 @@
+import React, { memo } from 'react'
+import { useParams } from 'react-router'
+import { Alert, Button, Drawer } from 'rsuite'
+import { useCurrentRoom } from '../../../Context/CurrentRoomContext'
+import { useModalState } from '../../../misc/custom-hooks'
+import { database } from '../../../misc/firebase'
+import EditableInput from '../../dashboard/EditableInput'
+
+
+
+
+
+
+const EditRoomBtnDrawer = () => {
+
+  const {chatId} = useParams();
+  const updateData = (key,value)=>{
+    
+    database.ref(`rooms/${chatId}/${key}`).set(value).then(()=>{
+      Alert.success('successfully updated',4000);
+    }).catch((err)=>{
+        Alert.error(err.message,'3000')
+    })
+   }
+   const onNameSave = (newName)=>{
+    
+      updateData('name',newName)
+   }
+   
+   const onDescriptionSave = (newDesc)=>{
+   
+      updateData('description',newDesc)
+   }
+
+  const {open,isOpen,close} = useModalState()
+  const name = useCurrentRoom( v => v.name)
+  const description = useCurrentRoom( v => v.description)
+
+  return (
+    <div>
+      <Button className = "rounded-circle" size="sm" color="red" onClick={open}>
+        A
+      </Button>
+
+      <Drawer show={isOpen} onHide = {close} placement="right">
+        
+        <Drawer.Header>
+
+          <Drawer.Title className="text-white">
+            Edit Room
+          </Drawer.Title>
+
+        </Drawer.Header>
+        <Drawer.Body>
+
+          <EditableInput 
+          initialValue={name} 
+          onSave={onNameSave} 
+          label={<h6 className="mb-2">Name</h6>}
+          emptyMsg = "name can't be empty"
+          />
+          
+          <EditableInput 
+           componentClass = "textarea"
+           rows = {5}
+           
+           label={<h6 className="mb-2">Description</h6>}
+           initialValue = {description}
+           onSave = {onDescriptionSave}
+           emptyMSg = "Description can't be empty"
+           wrapperClassName="mt-3"
+           backdrop
+           />
+        </Drawer.Body>
+        <Drawer.Footer>
+          <Button block onClick={close} color="red">
+            Close
+          </Button>
+        </Drawer.Footer>
+      </Drawer>
+    </div>
+  )
+}
+
+export default memo(EditRoomBtnDrawer)

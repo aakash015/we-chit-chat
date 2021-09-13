@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import { Input, InputGroup,Icon, Alert } from 'rsuite'
 
-const EditableInput = ({initialValue,onSave,label=null,placeholder="write your value",emptyMsg="Input Is Empty",...InputProps}) => {
+const EditableInput = (
+  {initialValue,
+  onSave,label=null,
+  placeholder="write your value",
+  emptyMsg="Input Is Empty",
+  wrapperClassName="",
+  ...InputProps}
+  ) => {
   
   const [input,setInput] = useState(initialValue);
   const [isEditable,setIsEditable] = useState(false);
@@ -32,7 +39,7 @@ const EditableInput = ({initialValue,onSave,label=null,placeholder="write your v
      setIsEditable(false);
   }
   return (
-    <div>
+    <div className={wrapperClassName}>
       {label}
      <InputGroup> 
       <Input {...InputProps}
