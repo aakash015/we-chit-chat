@@ -11,9 +11,7 @@
   padding-bottom: 0 !important;
 }
 
-.styleBlack{
-   background-color: black;
-}
+
 
 .word-break-all {
   word-break: break-all;
@@ -22,3 +20,22 @@
 .font-bolder {
   font-weight: 500;
 }
+
+.hoverStyle:hover{
+   
+  background-color: #272424;
+  
+}
+
+.styledLiked{
+   
+  color: red;
+  background-color: black;
+}
+
+.styledRaw{
+   color:white;
+   background-color: black;
+}
+
+

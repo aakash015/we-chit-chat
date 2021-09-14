@@ -8,6 +8,7 @@ import ProfileAvatar from '../../dashboard/ProfileAvatar'
 import PresenceDot from '../../PresenceDot'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 import { database } from '../../../misc/firebase'
+import IconBtnControl from './IconBtnControl'
 
 const MessageItem = ({message}) => {
 
@@ -48,7 +49,7 @@ async function handleAdmin(){
   
 }
   return (
-    <li className="mb-1 p-2">
+    <li className="mb-1 p-2 hoverStyle">
       
       <div className="d-flex align-items-center font-bolder mb-1">
 
@@ -58,13 +59,13 @@ async function handleAdmin(){
         
         <ProfileInfoBtnModal 
         profile={author} 
-        className="p-0 ml-1 text-white styleBlack" 
+        className="p-0 ml-1 text-white" 
         appearance="link" 
         >
          {
            canGrantAdmin && 
            <Button block onClick={handleAdmin} color="blue">
-             {isMsgAuthorAdmin?'Remove admin':'Make Admin'}
+             {isMsgAuthorAdmin?'Remove Admin':'Make Admin'}
            </Button>
          } 
         </ProfileInfoBtnModal>
@@ -72,6 +73,15 @@ async function handleAdmin(){
           datetime={createdAt}
           className="font-weight-normal text-white-45 ml-2"
        />
+  
+       <IconBtnControl 
+        isVisible
+        iconName = "heart"
+        tooltip = "like this message"
+        onClick = {()=>{}}
+        badgecontent = {5}
+       />
+
       </div>
       <div>
         <span classname="word-break-all">{text}</span>
