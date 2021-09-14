@@ -9,10 +9,11 @@ import PresenceDot from '../../PresenceDot'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 import { database } from '../../../misc/firebase'
 import IconBtnControl from './IconBtnControl'
+import { transformToArr, transformToArrWithValues } from '../../../misc/helper'
 
 const MessageItem = ({message}) => {
 
-  const {author,createdAt,text} = message
+  const {author,createdAt,text,likedBy,likeCount} = message
   const {chatId} = useParams()
 
   const isAdmin = useCurrentRoom(v => v.isAdmin)
@@ -21,7 +22,7 @@ const MessageItem = ({message}) => {
   const isMsgAuthorAdmin = admins.includes(author.uid)
   const isAuthor = auth.currentUser.uid ===author.uid
   const canGrantAdmin = isAdmin && !isAuthor
-
+  const isLiked = likedBy && Object.keys(likedBy).includes(auth.currentUser.uid) 
   
 async function handleAdmin(){
   const snap = await database.ref(`/rooms/${chatId}/admins/${author.uid}`).once('value')
@@ -48,6 +49,51 @@ async function handleAdmin(){
   }
   
 }
+
+
+const handleLike = async (msgId)=>{
+      
+  console.log("i am called ")
+
+  const {uid} = auth.currentUser;
+
+  console.log('msgId is ',msgId)
+   const likeCountRef = database.ref(`/messages/${msgId}/likeCount`);
+  
+
+   const likeuserRef = database.ref(`/messages/${msgId}/likedBy/${uid}`);
+   const likedByUids =  database.ref(`/messages/${msgId}/likedBy`);
+   const curdata = await likeCountRef.once('value'); 
+    const likedData= await likedByUids.once('value');
+    
+   
+   if(curdata.exists()){
+        const prev = curdata.val();
+       
+      
+        const likedUsers = transformToArr(likedData.val())
+
+        console.log("!!!!!!");
+        console.log(likedUsers);
+
+       if(likedUsers.includes(uid)===false)
+       { 
+        likeCountRef.set(prev+1);
+        
+         likeuserRef.push(uid);
+         Alert.info('Liked',2000);
+       }
+       else
+       {
+        likeCountRef.set(prev-1);
+        likedByUids.child(uid).remove();
+        Alert.info('Like Removed',2000);
+       }
+   }
+
+   
+ }
+
   return (
     <li className="mb-1 p-2 hoverStyle">
       
@@ -75,11 +121,12 @@ async function handleAdmin(){
        />
   
        <IconBtnControl 
-        isVisible
+       className = {isLiked?'styledLiked':'styledRaw'}
+       
         iconName = "heart"
         tooltip = "like this message"
-        onClick = {()=>{}}
-        badgecontent = {5}
+        onClick = {()=> handleLike(message.id)}
+        badgecontent = {likeCount}
        />
 
       </div>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Alert, Icon, Input, InputGroup } from 'rsuite'
 import { ProfileContext } from '../../../Context/ProfileContext';
 import firebase from 'firebase/app'
-import { database } from '../../../misc/firebase';
+import { auth, database } from '../../../misc/firebase';
 const BottomMain = () => {
 
   const [input,setInput] = useState('');
@@ -23,11 +23,14 @@ const BottomMain = () => {
         createdAt : profile.createdAt,
         ...(profile.avatar?{avatar:profile.avatar}:{})
       },
-      createdAt : firebase.database.ServerValue.TIMESTAMP
+      createdAt : firebase.database.ServerValue.TIMESTAMP,
+      likeCount:0
     }
 
    }
 
+
+  
   const onInputChange = (value)=>{
       setInput(value)
   }

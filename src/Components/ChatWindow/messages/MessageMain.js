@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useParams} from "react-router"
-import { database } from '../../../misc/firebase'
+import {  database } from '../../../misc/firebase'
 import { transformToArrWithId } from '../../../misc/helper'
 import '../../../Styles/MessageMain.css'
 import MessageItem from './MessageItem'
@@ -11,7 +11,10 @@ const MessageMain = () => {
 
     const isChatEmpty = messages&&messages.length===0;
     const canShowMessages = messages && messages.length>0
+
     
+  
+
 
   useEffect(() => {
  

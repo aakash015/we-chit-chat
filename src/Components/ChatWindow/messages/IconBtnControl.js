@@ -8,10 +8,10 @@ const ConditionalBadge = ({condition,children})=>{
   return condition?<Badge content={condition}>{children}</Badge>:children
 }
 
-const IconBtnControl = ({isVisible,iconName,tooltip,onClick,badgecontent,...props}) => {
+const IconBtnControl = ({iconName,tooltip,onClick,badgecontent,...props}) => {
 
   return (
-    <div className="ml-2" style={{visibility: isVisible?'visible':'hidden'}}>
+    <div className="ml-2">
       
         
          <ConditionalBadge condition={badgecontent}>
@@ -25,7 +25,7 @@ const IconBtnControl = ({isVisible,iconName,tooltip,onClick,badgecontent,...prop
            speaker={<Tooltip>{tooltip}</Tooltip>}
           >
             <IconButton 
-             className = {true?'styledLiked':'styledRaw'}
+             
              {...props}
              onClick={onClick}
              circle
