@@ -4,6 +4,7 @@ import { Alert, Icon, Input, InputGroup } from 'rsuite'
 import { ProfileContext } from '../../../Context/ProfileContext';
 import firebase from 'firebase/app'
 import { auth, database } from '../../../misc/firebase';
+import AttachmentBtnModal from './AttachmentBtnModal';
 const BottomMain = () => {
 
   const [input,setInput] = useState('');
@@ -86,6 +87,7 @@ const BottomMain = () => {
     <div>
      <InputGroup>
      
+    <AttachmentBtnModal />
       <Input
        placeholder="Write a new message here..." 
        value={input}

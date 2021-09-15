@@ -53,7 +53,7 @@ const Chat = () => {
   }
   return (
    <CurrentRoomProvider data={currentRoomData}> 
-    <div className="h-100">
+    <div className="h-100 scrollbar">
       <div  className="chat-top text-white">
         <TopMain/>
       </div>

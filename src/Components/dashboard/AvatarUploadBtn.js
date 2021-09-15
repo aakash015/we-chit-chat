@@ -77,6 +77,8 @@ const AvatarUploadBtn = () => {
 
       const uploadAvatarResult = await avatarpath.put(blob);
     
+      console.log("!@!@!@!@")
+     console.log(uploadAvatarResult);
 
       const downloadURL = await uploadAvatarResult.ref.getDownloadURL()
     
@@ -87,7 +89,7 @@ const AvatarUploadBtn = () => {
       // userAvatarRef.set(downloadURL);
      
       await database.ref().update(updates);
-
+      close()
       setIsLoading(false)
       Alert.info('Avatar Uploaded',2000);
 
