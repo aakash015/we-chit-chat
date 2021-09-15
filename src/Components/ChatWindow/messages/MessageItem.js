@@ -10,10 +10,11 @@ import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 import { database } from '../../../misc/firebase'
 import IconBtnControl from './IconBtnControl'
 import { transformToArr } from '../../../misc/helper'
+import ImgBtnModal from './ImgBtnModal'
 
 const MessageItem = ({message,handleDelete}) => {
 
-  const {author,createdAt,text,likedBy,likeCount} = message
+  const {author,createdAt,text,file,likedBy,likeCount} = message
   const {chatId} = useParams()
 
   const isAdmin = useCurrentRoom(v => v.isAdmin)
@@ -24,6 +25,19 @@ const MessageItem = ({message,handleDelete}) => {
   const canGrantAdmin = isAdmin && !isAuthor
   const isLiked = likedBy && Object.keys(likedBy).includes(auth.currentUser.uid) 
   
+
+ const renderFileMessage =(file)=>{
+
+
+  if(file.contentType.includes('image')){
+    return <div>
+      <ImgBtnModal src={file.url} fileName={file.name} />
+    </div>
+  }
+
+  return <a href={file.url} target="_blank">Download {file.name}</a>
+ }
+
 async function handleAdmin(){
   const snap = await database.ref(`/rooms/${chatId}/admins/${author.uid}`).once('value')
   
@@ -143,7 +157,8 @@ const handleLike = async (msgId)=>{
 
       </div>
       <div>
-        <span className="word-break-all">{text}</span>
+        {text&& <span className="word-break-all">{text}</span>}
+        {file&&renderFileMessage(file)}
       </div>
     </li>
   )

@@ -26,7 +26,7 @@ const RoomItem = ({room}) => {
 
            <div className="ml-2">
               <div className = "font-italic text-white">{lastMessage.author.name}</div>
-              <span className="text-white">{lastMessage.text}</span>
+              <span className="text-white">{lastMessage.text||lastMessage.file.name}</span>
            </div>
           </>
           ):( <span>No Messages Yet.....</span>)
