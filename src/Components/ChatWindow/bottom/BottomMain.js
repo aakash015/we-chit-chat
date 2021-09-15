@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Alert, Icon, Input, InputGroup } from 'rsuite'
 import { ProfileContext } from '../../../Context/ProfileContext';
 import firebase from 'firebase/app'
-import { auth, database } from '../../../misc/firebase';
+import {database } from '../../../misc/firebase';
 import AttachmentBtnModal from './AttachmentBtnModal';
 const BottomMain = () => {
 
@@ -83,11 +83,51 @@ const BottomMain = () => {
       Alert.error(error.message)
     }
   }
+
+  const afterUpload =  async(files)=>{
+        
+    setLoading(true);
+
+    const updates = {}
+
+    files.forEach(file => {
+
+      const msgdata = assembleMessage(profile,chatId);
+      msgdata.file = file;
+      
+      const messageId = database.ref(`messages`).push().key;
+      updates[`/messages/${messageId}`] = msgdata;
+
+      
+
+       
+      });
+      const lastMsgId = Object.keys(updates).pop()
+
+      updates[`/rooms/${chatId}/lastMessage`] = {
+        ...updates[lastMsgId],
+        msgId : lastMsgId
+      }
+
+  
+
+      
+    try {
+      await database.ref().update(updates);
+      setLoading(false);
+    } catch (error) {
+       
+      setLoading(false);
+      Alert.error(error.message)
+    }
+
+  } 
+
   return (
     <div>
      <InputGroup>
      
-    <AttachmentBtnModal />
+    <AttachmentBtnModal afterUpload={afterUpload} />
       <Input
        placeholder="Write a new message here..." 
        value={input}

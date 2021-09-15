@@ -143,7 +143,7 @@ const handleLike = async (msgId)=>{
 
       </div>
       <div>
-        <span classname="word-break-all">{text}</span>
+        <span className="word-break-all">{text}</span>
       </div>
     </li>
   )
