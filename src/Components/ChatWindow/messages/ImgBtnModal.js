@@ -20,11 +20,7 @@ const ImgBtnModal = ({src,fileName}) => {
               <img  src={src} height="100%" width="100%" alt="file"/>
             </div>
          </Modal.Body>
-         <Modal.Footer>
-            <a href={src} target="_blank">
-              View Original
-            </a>
-         </Modal.Footer>
+        
       </Modal> 
     </>
   )

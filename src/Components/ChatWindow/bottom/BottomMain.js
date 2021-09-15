@@ -5,6 +5,7 @@ import { ProfileContext } from '../../../Context/ProfileContext';
 import firebase from 'firebase/app'
 import {database } from '../../../misc/firebase';
 import AttachmentBtnModal from './AttachmentBtnModal';
+import AudioMsgBtn from './AudioMsgBtn';
 const BottomMain = () => {
 
   const [input,setInput] = useState('');
@@ -128,6 +129,7 @@ const BottomMain = () => {
      <InputGroup>
      
     <AttachmentBtnModal afterUpload={afterUpload} />
+    <AudioMsgBtn afterUpload={afterUpload} />
       <Input
        placeholder="Write a new message here..." 
        value={input}
