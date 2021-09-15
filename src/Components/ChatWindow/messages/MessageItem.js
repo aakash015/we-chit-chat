@@ -35,6 +35,13 @@ const MessageItem = ({message,handleDelete}) => {
     </div>
   }
 
+  if(file.contentType.includes('audio')){
+    return <audio controls>
+      <source src={file.url} type="audio/mp3"/>
+      Your browser doesn't support audio
+    </audio>
+  }
+
   return <a href={file.url} target="_blank">Download {file.name}</a>
  }
 
@@ -151,7 +158,7 @@ const handleLike = async (msgId)=>{
         className="styledCross"
         iconName = "close"
         tooltip = "delete this message"
-        onClick = {()=> handleDelete(message.id)}
+        onClick = {()=> handleDelete(message.id,file)}
        /> 
      }
 

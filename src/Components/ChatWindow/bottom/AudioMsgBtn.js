@@ -27,8 +27,9 @@ const AudioMsgBtn = ({afterUpload}) => {
                     }
                     
                     setIsUploading(false);
-                    afterUpload([file])
                     Alert.success('Audio sent',2000)
+                    afterUpload([file])
+                    
     } catch (error) {
       setIsUploading(false)
       Alert.error(error.message,4000)

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useParams} from "react-router"
-import {  database } from '../../../misc/firebase'
+import {  database, storage } from '../../../misc/firebase'
 import { transformToArrWithId } from '../../../misc/helper'
 import '../../../Styles/MessageMain.css'
 import MessageItem from './MessageItem'
@@ -38,7 +38,7 @@ const MessageMain = () => {
   }, [chatId])
 
   
-  const handleDelete = async(msgId)=>{
+  const handleDelete = async(msgId,file)=>{
      
     console.log('msgId')
     if(!window.confirm('Are you sure?'))
@@ -68,10 +68,23 @@ const MessageMain = () => {
 
        Alert.info('Message has been deleted',2000)
        
+      
+
      } catch (error) {
        
-      Alert.error(error.message,2000)
+      return Alert.error(error.message,2000)
      }
+
+     if(file){
+        
+      try {
+        const fileRef = storage.refFromURL(file.url)
+        await fileRef.delete()
+      } catch (error) {
+        Alert.error(error.message,2000)
+      }
+
+    }
   }
 
   return (
