@@ -9,9 +9,9 @@ import PresenceDot from '../../PresenceDot'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 import { database } from '../../../misc/firebase'
 import IconBtnControl from './IconBtnControl'
-import { transformToArr, transformToArrWithValues } from '../../../misc/helper'
+import { transformToArr } from '../../../misc/helper'
 
-const MessageItem = ({message}) => {
+const MessageItem = ({message,handleDelete}) => {
 
   const {author,createdAt,text,likedBy,likeCount} = message
   const {chatId} = useParams()
@@ -60,7 +60,7 @@ const handleLike = async (msgId)=>{
   console.log('msgId is ',msgId)
    const likeCountRef = database.ref(`/messages/${msgId}/likeCount`);
   
-
+   
    const likeuserRef = database.ref(`/messages/${msgId}/likedBy/${uid}`);
    const likedByUids =  database.ref(`/messages/${msgId}/likedBy`);
    const curdata = await likeCountRef.once('value'); 
@@ -94,6 +94,8 @@ const handleLike = async (msgId)=>{
    
  }
 
+ 
+ 
   return (
     <li className="mb-1 p-2 hoverStyle">
       
@@ -121,13 +123,23 @@ const handleLike = async (msgId)=>{
        />
   
        <IconBtnControl 
-       className = {isLiked?'styledLiked':'styledRaw'}
+        className = {isLiked?'styledLiked':'styledRaw'}
        
         iconName = "heart"
         tooltip = "like this message"
         onClick = {()=> handleLike(message.id)}
         badgecontent = {likeCount}
        />
+
+     {
+      isAuthor&& 
+      <IconBtnControl 
+        className="styledCross"
+        iconName = "close"
+        tooltip = "delete this message"
+        onClick = {()=> handleDelete(message.id)}
+       /> 
+     }
 
       </div>
       <div>

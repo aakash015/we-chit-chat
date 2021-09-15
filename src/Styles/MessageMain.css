@@ -31,11 +31,17 @@
    
   color: red;
   background-color: black;
+
 }
 
 .styledRaw{
    color:white;
    background-color: black;
+   
+}
+.styledCross{
+  background-color: black;
+  color: white;
 }
 
 

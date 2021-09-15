@@ -71,8 +71,9 @@ const BottomMain = () => {
     setLoading(true);
 
     try {
-      await database.ref().update(updates);
       setInput('');
+      await database.ref().update(updates);
+     
 
       setLoading(false);
     } catch (error) {

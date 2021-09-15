@@ -8,7 +8,7 @@ const ConditionalBadge = ({condition,children})=>{
   return condition?<Badge content={condition}>{children}</Badge>:children
 }
 
-const IconBtnControl = ({iconName,tooltip,onClick,badgecontent,...props}) => {
+const IconBtnControl = ({iconName,tooltip,onClick,badgecontent,className}) => {
 
   return (
     <div className="ml-2">
@@ -26,7 +26,7 @@ const IconBtnControl = ({iconName,tooltip,onClick,badgecontent,...props}) => {
           >
             <IconButton 
              
-             {...props}
+             className={className}
              onClick={onClick}
              circle
              size="xs"

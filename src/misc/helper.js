@@ -18,9 +18,7 @@ export function transformToArr(snapVal){
    
 }
 
-export function transformToArrWithValues(snapVal){
-   return snapVal?Object.values(snapVal):[];
-}
+
 export function transformToArrWithId(snapVal)
 {
    return snapVal?Object.keys(snapVal).map(roomId =>{
