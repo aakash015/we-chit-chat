@@ -74,8 +74,13 @@ const BottomMain = () => {
 
     try {
       setInput('');
+
+      
       await database.ref().update(updates);
      
+      var elem = document.getElementById('auto-scroll');
+      elem.scrollTop = elem.scrollHeight;
+
 
       setLoading(false);
     } catch (error) {

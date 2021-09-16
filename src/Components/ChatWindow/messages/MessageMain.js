@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import {useParams} from "react-router"
 import {  database, storage } from '../../../misc/firebase'
-import { transformToArrWithId } from '../../../misc/helper'
+import { groupBy, transformToArrWithId } from '../../../misc/helper'
 import '../../../Styles/MessageMain.css'
 import MessageItem from './MessageItem'
 import {Alert} from 'rsuite'
+import { isElement } from 'react-dom/test-utils'
 const MessageMain = () => {
 
   const {chatId} = useParams()
@@ -87,11 +88,31 @@ const MessageMain = () => {
     }
   }
 
+  const renderMessages = ()=>{
+
+  
+    const groups = groupBy(messages,(item)=>new Date(item.createdAt).toDateString())
+    // messages.map(msg=>/>)
+    
+    const items = []
+    Object.keys(groups).forEach((date)=>{
+      
+      items.push(<li key={date} className="text-center mb-1 padded">{date}</li>)
+    
+      const msgs = groups[date].map(msg => <MessageItem key={msg.id} message = {msg} handleDelete={handleDelete}></MessageItem>)
+   
+      items.push(...msgs)
+    })
+
+    return items;
+  }
+
   return (
-    <ul className="msg-list">
+    <ul className="msg-list" id="auto-scroll">
     {isChatEmpty && <li>No messages yet</li>}
-    {canShowMessages && messages.map(msg=><MessageItem key={msg.id} message = {msg} handleDelete={handleDelete}/>)}
-    </ul>
+    {canShowMessages && 
+      renderMessages()
+    }</ul>
   )
 }
 

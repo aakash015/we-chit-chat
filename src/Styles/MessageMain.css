@@ -73,6 +73,13 @@
   background: #555; 
 }
 
+/* 
+@media (max-width: 992px){
+   .msg-list{
+     overflow-y: scroll;
+   }
+} */
+
 .animate-blink {
   animation: blink normal 1.5s infinite ease-in-out;
   color: red !important;

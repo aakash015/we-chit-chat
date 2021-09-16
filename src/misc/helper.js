@@ -56,3 +56,28 @@ export async function getUserUpdates(userId,keyToUpdate,value,database)
 
    return updates;
 }
+
+//groupBy(messages,(msgItem)=> msgItem.createdAt)
+
+export function groupBy(array,groupingKeyFn){
+
+   return array.reduce((result,item)=>{
+       
+         const groupingKey = groupingKeyFn(item);
+        
+         if(!result[groupingKey]){
+            result[groupingKey] = [];
+            console.log("venu swami muttu swami ram gopa iyer")
+            
+         }
+
+         result[groupingKey].push(item)
+         
+
+          console.log("mera yashu yashu mera yashu yashu")
+         console.log(result);
+
+         return result
+   },{})
+
+}
